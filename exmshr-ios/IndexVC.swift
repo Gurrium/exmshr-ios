@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class IndexVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let frame = CGRect(x: self.view.bounds.origin.x,
+                                   y: self.view.bounds.origin.y,
+                                   width: self.view.bounds.width,
+                                   height: self.view.bounds.height)
+        let view = IndexView(frame: frame)
+        self.view.addSubview(view)
     }
 
     override func didReceiveMemoryWarning() {
