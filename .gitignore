@@ -16,7 +16,6 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-exmshr-ios.xcodeproj
 
 ## Other
 *.moved-aside
