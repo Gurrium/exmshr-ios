@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class sharedExamVC: UIViewController, sharedExamDelegate {
     var sharedExams = sharedExam()
     var myView = sharedExamView()
+    var cells: [sharedExamCell] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +22,28 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
                            height: self.view.bounds.height)
         myView = sharedExamView(frame: frame)
         
-        myView.sharedExamCollectionView.dataSource = self
-        myView.sharedExamCollectionView.delegate = self
-        sharedExams.delegate = self
+        setDelegate()
         
         self.view.addSubview(myView)
     }
     
+    func setDelegate() {
+        myView.sharedExamCollectionView.dataSource = self
+        myView.sharedExamCollectionView.delegate = self
+        sharedExams.delegate = self
+    }
+    
+    func setUpCells() {
+        // データごとにセルを作ってそれを配列(Cells)に突っ込む関数
+        let width = self.view.frame.width / 2 - 1.0
+        let height = self.view.frame.height / 3
+        for (_, subJson):(String, JSON) in sharedExams.data {
+            cells.append(sharedExamCell(frame: CGRect(x: 0, y: 0, width: width, height: height), data: subJson))
+        }
+    }
+    
     func didLoadData() {
+        setUpCells()
         myView.sharedExamCollectionView.reloadData()
     }
 
@@ -42,15 +58,15 @@ extension sharedExamVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .white
-        
+        cell.addSubview(cells[indexPath.row])
+
         return cell
     }
     
     // Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return sharedExams.data.count
+        return cells.count
     }
 }
 
