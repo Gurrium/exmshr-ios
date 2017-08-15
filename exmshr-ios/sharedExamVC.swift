@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IndexVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class sharedExamVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class IndexVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                                    y: self.view.bounds.origin.y,
                                    width: self.view.bounds.width,
                                    height: self.view.bounds.height)
-        let view = IndexView(frame: frame)
+        let view = sharedExamView(frame: frame)
         
         view.sharedExamCollectionView.dataSource = self
         view.sharedExamCollectionView.delegate = self
@@ -48,6 +48,7 @@ class IndexVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     // ----- end for protocol UICollectionViewDataSource -----
+    
     
     // ----- start for protocol UICollectionViewDelegateFlowLayout -----
     

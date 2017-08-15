@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class IndexView: UIView {
+class sharedExamView: UIView {
     lazy var sharedExamCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
