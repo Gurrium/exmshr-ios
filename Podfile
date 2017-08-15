@@ -5,4 +5,5 @@ use_frameworks!
 target 'exmshr-ios' do
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
+  pod 'Eureka'
 end
