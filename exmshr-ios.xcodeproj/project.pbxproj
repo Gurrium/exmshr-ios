@@ -15,6 +15,8 @@
 		BBBEE4361F43798E00DB3806 /* sharedExamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBEE4351F43798E00DB3806 /* sharedExamVC.swift */; };
 		BBBEE4391F43799700DB3806 /* sharedExamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBEE4371F43799700DB3806 /* sharedExamCell.swift */; };
 		BBBEE43A1F43799700DB3806 /* sharedExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBEE4381F43799700DB3806 /* sharedExamView.swift */; };
+		BBBEE43C1F43962A00DB3806 /* searchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBEE43B1F43962A00DB3806 /* searchVC.swift */; };
+		BBBEE43E1F4396BA00DB3806 /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBEE43D1F4396BA00DB3806 /* searchView.swift */; };
 		C6D56A077B0FDC03626F073F /* Pods_exmshr_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE6E7759DCC979879B6565E /* Pods_exmshr_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		BBBEE4351F43798E00DB3806 /* sharedExamVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sharedExamVC.swift; sourceTree = "<group>"; };
 		BBBEE4371F43799700DB3806 /* sharedExamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sharedExamCell.swift; sourceTree = "<group>"; };
 		BBBEE4381F43799700DB3806 /* sharedExamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sharedExamView.swift; sourceTree = "<group>"; };
+		BBBEE43B1F43962A00DB3806 /* searchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchVC.swift; sourceTree = "<group>"; };
+		BBBEE43D1F4396BA00DB3806 /* searchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchView.swift; sourceTree = "<group>"; };
 		BDE6E7759DCC979879B6565E /* Pods_exmshr_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exmshr_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				BBBEE4351F43798E00DB3806 /* sharedExamVC.swift */,
+				BBBEE43B1F43962A00DB3806 /* searchVC.swift */,
 			);
 			name = Controlelr;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				BBBEE4371F43799700DB3806 /* sharedExamCell.swift */,
+				BBBEE43D1F4396BA00DB3806 /* searchView.swift */,
 				BBBEE4381F43799700DB3806 /* sharedExamView.swift */,
 			);
 			name = View;
@@ -253,8 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBBEE43E1F4396BA00DB3806 /* searchView.swift in Sources */,
 				BBBEE4361F43798E00DB3806 /* sharedExamVC.swift in Sources */,
 				BBBEE4341F43798700DB3806 /* sharedExam.swift in Sources */,
+				BBBEE43C1F43962A00DB3806 /* searchVC.swift in Sources */,
 				BBBEE43A1F43799700DB3806 /* sharedExamView.swift in Sources */,
 				BBBEE4391F43799700DB3806 /* sharedExamCell.swift in Sources */,
 				BB97ADFC1F4080A7005E02C3 /* AppDelegate.swift in Sources */,

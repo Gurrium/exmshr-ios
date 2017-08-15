@@ -23,7 +23,8 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
         myView = sharedExamView(frame: frame)
         
         setDelegate()
-        
+        setNavBar()
+            
         self.view.addSubview(myView)
     }
     
@@ -33,7 +34,13 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
         sharedExams.delegate = self
     }
     
-    func setUpCells() {
+    func setNavBar() {
+        self.title = "過去問一覧"
+        let buttonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(self.moveToSearchView))
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    func setCells() {
         // データごとにセルを作ってそれを配列(Cells)に突っ込む関数
         let width = self.view.frame.width / 2 - 1.0
         let height = self.view.frame.height / 3
@@ -42,8 +49,13 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
         }
     }
     
+    func moveToSearchView() {
+        let nextVC = searchVC()
+        self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
     func didLoadData() {
-        setUpCells()
+        setCells()
         myView.sharedExamCollectionView.reloadData()
     }
 

@@ -20,11 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ViewControllerを生成する.
         let vc = sharedExamVC()
         
+        
+        let nav = UINavigationController(rootViewController: vc)
+        
+        
         // UIWindowを生成する.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         // rootViewControllerにNatigationControllerを設定する.
-        self.window?.rootViewController = vc
+        self.window?.rootViewController = nav
         
         self.window?.makeKeyAndVisible()
         
