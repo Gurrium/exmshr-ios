@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // ViewControllerを生成する.
-        let vc = IndexVC()
+        let vc = sharedExamVC()
         
         // UIWindowを生成する.
         self.window = UIWindow(frame: UIScreen.main.bounds)
