@@ -8,30 +8,36 @@
 
 import UIKit
 
-class sharedExamVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class sharedExamVC: UIViewController, sharedExamDelegate {
+    var sharedExams = sharedExam()
+    var myView = sharedExamView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let frame = CGRect(x: self.view.bounds.origin.x,
-                                   y: self.view.bounds.origin.y,
-                                   width: self.view.bounds.width,
-                                   height: self.view.bounds.height)
-        let view = sharedExamView(frame: frame)
+                           y: self.view.bounds.origin.y,
+                           width: self.view.bounds.width,
+                           height: self.view.bounds.height)
+        myView = sharedExamView(frame: frame)
         
-        view.sharedExamCollectionView.dataSource = self
-        view.sharedExamCollectionView.delegate = self
+        myView.sharedExamCollectionView.dataSource = self
+        myView.sharedExamCollectionView.delegate = self
+        sharedExams.delegate = self
         
-        self.view.addSubview(view)
+        self.view.addSubview(myView)
+    }
+    
+    func didLoadData() {
+        myView.sharedExamCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // ----- start for protocol UICollectionViewDataSource -----
-    
+}
+
+extension sharedExamVC: UICollectionViewDataSource {
     // Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,15 +49,12 @@ class sharedExamVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
     // Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView,
-                                 numberOfItemsInSection section: Int) -> Int {
-        return 10
+                        numberOfItemsInSection section: Int) -> Int {
+        return sharedExams.data.count
     }
-    
-    // ----- end for protocol UICollectionViewDataSource -----
-    
-    
-    // ----- start for protocol UICollectionViewDelegateFlowLayout -----
-    
+}
+
+extension sharedExamVC: UICollectionViewDelegateFlowLayout {
     // Asks the delegate for the size of the specified item’s cell.
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -79,15 +82,13 @@ class sharedExamVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 50, height: 10)
+        return CGSize(width: 0, height: 0)
     }
     
     // Asks the delegate for the size of the footer view in the specified section.
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 50, height: 10)
+        return CGSize(width: 0, height: 0)
     }
-    
-    // ----- end for protocol UICollectionViewDelegateFlowLayout -----
 }
