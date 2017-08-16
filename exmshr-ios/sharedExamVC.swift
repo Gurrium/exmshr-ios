@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyJSON
 
-class sharedExamVC: UIViewController, sharedExamDelegate {
-    var sharedExams = sharedExam()
+class sharedExamVC: UIViewController, loadDataDelegate {
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var sharedExams: sharedExam?
     var myView = sharedExamView()
     var cells: [sharedExamCell] = []
 
@@ -22,16 +23,20 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
                            height: self.view.bounds.height)
         myView = sharedExamView(frame: frame)
         
-        setDelegate()
         setNavBar()
             
         self.view.addSubview(myView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        sharedExams = sharedExam(appDelegate.subject, appDelegate.grade, appDelegate.teacher, appDelegate.kind)
+        setDelegate()
+    }
+    
     func setDelegate() {
         myView.sharedExamCollectionView.dataSource = self
         myView.sharedExamCollectionView.delegate = self
-        sharedExams.delegate = self
+        sharedExams?.delegate = self
     }
     
     func setNavBar() {
@@ -41,10 +46,11 @@ class sharedExamVC: UIViewController, sharedExamDelegate {
     }
     
     func setCells() {
+        cells = []
         // データごとにセルを作ってそれを配列(Cells)に突っ込む関数
         let width = self.view.frame.width / 2 - 1.0
         let height = self.view.frame.height / 3
-        for (_, subJson):(String, JSON) in sharedExams.data {
+        for (_, subJson):(String, JSON) in (sharedExams?.data)! {
             cells.append(sharedExamCell(frame: CGRect(x: 0, y: 0, width: width, height: height), data: subJson))
         }
     }

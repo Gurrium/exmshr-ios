@@ -11,9 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 class sharedExam {
-    weak var delegate: sharedExamDelegate?
+    weak var delegate: loadDataDelegate?
     
-    var data: JSON = JSON([])
+    var data: JSON = JSON({})
     
     init (_ subject: String = "", _ grade: String = "", _ teacher: String = "", _ kind: String = "") {
         setData(subject, grade, teacher, kind)
@@ -39,6 +39,6 @@ class sharedExam {
     }
 }
 
-protocol sharedExamDelegate: class {
+protocol loadDataDelegate: class {
     func didLoadData()
 }
