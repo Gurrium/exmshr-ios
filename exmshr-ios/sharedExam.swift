@@ -15,14 +15,13 @@ class sharedExam {
     
     var data: JSON = JSON({})
     
-    init (_ subject: String = "", _ grade: String = "", _ teacher: String = "", _ kind: String = "") {
+    init (_ subject: String?, _ grade: String?, _ teacher: String?, _ kind: String?) {
         setData(subject, grade, teacher, kind)
     }
     
-    private func setData(_ subject: String, _ grade: String, _ teacher: String, _ kind: String) {
-        let params: Parameters = ["subject": subject, "grade": grade, "teacher": teacher, "kind": kind]
-        let url = "http://localhost:3000/shared_exams.json"
-//        var return_value: JSON = JSON([])
+    private func setData(_ subject: String?, _ grade: String?, _ teacher: String?, _ kind: String?) {
+        let params: Parameters = ["subject": subject ?? "", "grade": grade ?? "", "teacher": teacher ?? "", "kind": kind ?? ""]
+        let url = "http://192.168.100.6:3000/shared_exams.json"
         
         Alamofire.request(url, parameters:params).responseJSON { response in
             print(String(describing: response.request))  // original URL request

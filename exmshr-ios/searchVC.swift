@@ -16,20 +16,12 @@ class searchVC: FormViewController, loadDataDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let frame = CGRect(x: self.view.bounds.origin.x,
-                           y: self.view.bounds.origin.y,
-                           width: self.view.bounds.width,
-                           height: self.view.bounds.height)
-        let myView = searchView(frame: frame)
-        
         searchQueries.delegate = self
         setNavBar()
-        
-        self.view.addSubview(myView)
     }
     
     func setNavBar() {
-        self.title = "検索"
+        self.title = "検索設定"
 //        self.navigationItem.hidesBackButton = true
     }
     
@@ -39,41 +31,42 @@ class searchVC: FormViewController, loadDataDelegate {
     
     func createForm() {        
         form +++ Section()
-            <<< PickerInputRow<String>("subject") {
+            <<< PushRow<String>("subject") {
                 $0.title = "教科"
+                $0.selectorTitle = "Pick a number"
                 $0.options = searchQueries.subjects
-                $0.baseCell.tintColor = .black
             }
-            <<< PickerInputRow<Int>("grade") {
+            <<< PushRow<Int>("grade") {
                 $0.title = "学年"
                 $0.options = [1, 2, 3, 4, 5]
             }
-            <<< PickerInputRow<String>("teacher") {
+            <<< PushRow<String>("teacher") {
                 $0.title = "先生"
                 $0.options = searchQueries.teachers
             }
-            <<< PickerInputRow<String>("kind") {
+            <<< PushRow<String>("kind") {
                 $0.title = "テストの種類"
                 $0.options = searchQueries.kinds
             }
-            <<< TextRow("hoge") { row in
-                row.title = "テストの種類"
-                row.placeholder = "hoge"
-            }
+
+            +++ Section()
             <<< ButtonRow() {
                 $0.title = "検索"
-            }.onCellSelection { cell, row in
+            }.onCellSelection{_, _ in
                 self.setQuery()
-                self.navigationController?.popViewController(animated: false)
+                self.navigationController?.popViewController(animated: true)
             }
-        
-//        setQuery()
     }
     
     func setQuery() {
-        appDelegate.subject = (form.rowBy(tag: "subject")?.value)!
-        appDelegate.grade = (form.rowBy(tag: "grade")?.value)!
-        appDelegate.teacher = (form.rowBy(tag: "teacher")?.value)!
-        appDelegate.kind = (form.rowBy(tag: "kind")?.value)!
+        let subjectRow: PushRow? = form.rowBy(tag: "subject")
+        let gradeRow: TextRow? = form.rowBy(tag: "grade")
+        let teacherRow: TextRow? = form.rowBy(tag: "teacher")
+        let kindRow: TextRow? = form.rowBy(tag: "kind")
+        print(subjectRow?.value)
+        appDelegate.subject = subjectRow?.value
+        appDelegate.subject = gradeRow?.value
+        appDelegate.subject = teacherRow?.value
+        appDelegate.subject = kindRow?.value
     }
 }

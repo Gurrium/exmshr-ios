@@ -12,10 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var subject: String = ""
-    var grade: String = ""
-    var teacher: String = ""
-    var kind: String = ""
+    var subject: String?
+    var grade: String?
+    var teacher: String?
+    var kind: String?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

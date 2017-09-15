@@ -21,7 +21,7 @@ class searchQuery {
     }
     
     func getData() {
-        let url = "http://localhost:3000/shared_exams/json_list.json"
+        let url = "http://192.168.100.6:3000/shared_exams/json_list.json"
         Alamofire.request(url).responseJSON { response in
             print(String(describing: response.request))  // original URL request
             print(String(describing: response.response)) // HTTP URL response
